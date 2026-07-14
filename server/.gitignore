@@ -2,10 +2,6 @@
 // Posted by Hamid Shoja
 // Retrieved 2026-07-13, License - CC BY-SA 4.0
 
-
-server/.env
-client/.env
-
 # Logs
 logs
 *.log
@@ -20,7 +16,6 @@ build/Release
 
 # Dependency directories
 server/node_modules/
-client/node_modules/
 jspm_packages/
 
 # Distribution directories
@@ -45,3 +40,5 @@ typings/
 .yarn-integrity
 
 
+server/.env
+client/.env
