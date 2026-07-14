@@ -10,6 +10,7 @@ yarn-debug.log*
 yarn-error.log*
 
 
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
@@ -37,3 +38,7 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+
+
+server/.env
+client/.env
