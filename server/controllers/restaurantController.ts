@@ -6,6 +6,8 @@ import { Restaurant } from "../models/Restaurant.js";
 import { User } from "../models/User.js";
 import { Booking } from "../models/Booking.js";
 
+// Get all restaurants that match the search query
+// GET /api/restaurants
 export const getRestaurants = async (
   req: Request,
   res: Response,
@@ -154,12 +156,10 @@ export const getRestaurantAvailability = async (
       status: "confirmed",
     });
     if (!bookings) {
-      res
-        .status(401)
-        .json({
-          message:
-            "THIS WAS NOT IN THE TUTORIAL: No confirmed booking for this date",
-        });
+      res.status(401).json({
+        message:
+          "THIS WAS NOT IN THE TUTORIAL: No confirmed booking for this date",
+      });
       return;
     }
 
