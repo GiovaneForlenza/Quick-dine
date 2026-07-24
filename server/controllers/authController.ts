@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../models/User.js";
 import { AuthRequest } from "../middlewares/auth.js";
+import { User } from "../models/User.js";
 
 // Helper to generate JWT token
 const generateToken = (id: string) => {
@@ -68,6 +68,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
     // Check for mandatory data
     const { email, password } = req.body;
+    // console.log(email, password);
+
     if (!email || !password) {
       res.status(400).json({ message: "Please provide email and password" });
       return;
@@ -75,6 +77,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 
     // Check if the user is registered
     const user = await User.findOne({ email });
+    // console.log(user);
+
     if (!user) {
       res.status(401).json({ message: "Invalid email or password" });
       return;
@@ -111,7 +115,7 @@ export const getUserProfile = async (
 ): Promise<void> => {
   try {
     if (!req.user) {
-      res.status(401).json({ message: "Not authorizes" });
+      res.status(401).json({ message: "Not authorized" });
       return;
     }
     res.json(req.user);

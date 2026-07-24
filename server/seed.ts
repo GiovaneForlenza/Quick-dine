@@ -6,11 +6,11 @@ import { Restaurant } from "./models/Restaurant.js";
 import { User } from "./models/User.js";
 
 const MONGO_URI = process.env.MONGODB_URI || "";
-const ADMIN_PW = process.env.ADMIN_PW || "";
-const USER_PW = process.env.USER_PW || "";
-const OWNER_PW = process.env.OWNER_PW || "";
+const ADMIN_PW = "admin123";
+const USER_PW = "user123";
+const OWNER_PW = "owner123";
 
-const seedData = async () => {
+export const seedData = async () => {
   try {
     console.log("Connecting to the DB");
     await mongoose.connect(MONGO_URI);
@@ -24,6 +24,7 @@ const seedData = async () => {
 
     const salt = await bcrypt.genSalt(10);
     const adminPassword = await bcrypt.hash(ADMIN_PW, salt);
+
     const userPassword = await bcrypt.hash(USER_PW, salt);
     const ownerPassword = await bcrypt.hash(OWNER_PW, salt);
 
@@ -34,6 +35,7 @@ const seedData = async () => {
       phone: "+012345789",
       role: "admin",
     });
+
     const testUser = await User.create({
       name: "User Name",
       email: "user@example.com",
