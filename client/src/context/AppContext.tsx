@@ -46,8 +46,7 @@ export const AppContextProvider = ({ children }: Props) => {
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      console.log(email, password);
-
+      // console.log(email, password);
       setLoading(true);
       const res = await api.post("/auth/login", { email, password });
       const { token: userToken, ...userData } = res.data;
@@ -57,7 +56,7 @@ export const AppContextProvider = ({ children }: Props) => {
       toast.success(`welcome back, ${userData.name}`);
       return true;
     } catch (error: any) {
-      toast.error(error?.response?.data?.message || error?.message);
+      toast.error("error " + error?.response?.data?.message || error?.message);
       return false;
     } finally {
       setLoading(false);

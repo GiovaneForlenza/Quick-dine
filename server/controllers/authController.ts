@@ -32,8 +32,8 @@ export const registerUser = async (
     }
 
     // Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hasedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    const hasedPassword = await bcrypt.hash(password, 12);
 
     // Create user
     const user = await User.create({
@@ -68,7 +68,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
     // Check for mandatory data
     const { email, password } = req.body;
-    // console.log(email, password);
 
     if (!email || !password) {
       res.status(400).json({ message: "Please provide email and password" });
@@ -83,9 +82,14 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       res.status(401).json({ message: "Invalid email or password" });
       return;
     }
+    // const newPassword = await bcrypt.hash(password, 12);
+    // console.log(password);
 
-    // Check if password matched
+    // console.log(newPassword);
+
+    // Check if password matches
     const isMatch = await bcrypt.compare(password, user.password || "");
+    // console.log(user.password);
 
     if (!isMatch) {
       res.status(401).json({ message: "Invalid email or password" });

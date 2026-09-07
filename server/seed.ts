@@ -22,7 +22,7 @@ export const seedData = async () => {
 
     console.log("Creating default users");
 
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(12);
     const adminPassword = await bcrypt.hash(ADMIN_PW, salt);
 
     const userPassword = await bcrypt.hash(USER_PW, salt);
